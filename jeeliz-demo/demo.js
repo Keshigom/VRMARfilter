@@ -51,10 +51,12 @@ function init_faceFilter(videoSettings) {
 
             console.log('INFO : JEEFACEFILTERAPI IS READY');
             init_threeScene(spec);
+            setTestObject();
         }, //end callbackReady()
 
         //called at each render iteration (drawing loop) :
         callbackTrack: function (detectState) {
+            update();
             THREE.JeelizHelper.render(detectState, THREECAMERA);
         } //end callbackTrack()
     }); //end JEEFACEFILTERAPI.init call

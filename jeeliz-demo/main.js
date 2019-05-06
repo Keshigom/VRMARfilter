@@ -1,4 +1,12 @@
 
+const Settings = {
+    positionOffset: {
+        x: 0,
+        y: -15,
+        z: 0
+    }
+}
+
 const setTestObject = () => {
     console.log(THREE.JeelizHelper.Scene);
     const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
@@ -9,26 +17,31 @@ const setTestObject = () => {
     createVRM();
 }
 
+let AVATAR_READY = false;
 const createVRM = () => {
-    const vrmLoader = new THREE.VRMLoader();
+    AVATAR = new WebVRM("./assets/MonoPub.vrm", THREE.JeelizHelper.Scene, () => { AVATAR_READY = true });
+}
 
-    vrmLoader.load(
-        "./assets/AliciaSolid.vrm",
-        (vrm) => {
-            THREE.JeelizHelper.Scene.add(vrm.model);
-            vrm.model.position.set(0, 0, -10);
-            // this._vrm = vrm;
-            // this._initAvatar(vrm);
-            // this.physics = new __three_vrm__.VRMPhysics(vrm);
-            // this.isReady = true;
-            // callBackReady();
-            // Render the scene.
-        },
-        function (progress) {
-            console.log(progress.loaded / progress.total);
-        },
-        function (error) {
-            console.error(error);
-        }
-    );
+let ajast = () => {
+    AVATAR.getScene().rotation.set(0, Math.PI, 0);
+    AVATAR.setScale(10);
+    ajast = () => { };
+}
+
+const update = () => {
+    if (!AVATAR_READY) return;
+    ajast();
+    avatar = AVATAR.getScene();
+    const targetPosition = THREE.JeelizHelper.CompositeObjects[0].position;
+    const targetRotation = THREE.JeelizHelper.CompositeObjects[0].rotation;
+    targetRotation.x = -targetRotation.x;
+    targetRotation.z = -targetRotation.z;
+    const currentPosition = {
+        x: targetPosition.x + Settings.positionOffset.x,
+        y: targetPosition.y + Settings.positionOffset.y,
+        z: targetPosition.z + Settings.positionOffset.z
+    };
+    avatar.rotation.set(0, Math.PI, 0);
+    avatar.position.set(currentPosition.x, currentPosition.y, currentPosition.z);
+    AVATAR.setBoneRotation("head", targetRotation);
 }
