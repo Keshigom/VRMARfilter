@@ -5,19 +5,26 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="content-language" content="en-EN" />
 
-    <title>JEELIZ FACE FILTER : THREE.JS CUBE DEMO WITH THREE.JS HELPER AND ES6</title>
+    <title>JEELIZ FACE FILTER : THREE.JS CUBE DEMO WITH THREE.JS HELPER</title>
+
+    <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
+    <script type="text/javascript" src="./libs/jeeliz/jeelizFaceFilter.js"></script>
 
     <!-- INCLUDE THREE.JS -->
     <script type="text/javascript" src="./libs/three.min.js"></script>
 
-    <!-- INCLUDE JEELIZ THREE.JS HELPER -->
-    <script type="text/javascript" src="./libs/JeelizThreejsHelper.js"></script>
-
     <!-- INCLUDE JEELIZRESIZER -->
     <script type="text/javascript" src="./libs/JeelizResizer.js"></script>
 
-    <!-- INCLUDE DEMO SCRIPT. TYPE SHOULD BE SET TO MODULE FOR ES6 -->
-    <script type="module" src="./demo.js"></script>
+    <!-- INCLUDE JEELIZ THREE.JS HELPER -->
+    <script type="text/javascript" src="./libs/JeelizThreejsHelper.js"></script>
+    <script type="text/javascript" src="./libs/GLTFLoader.js"></script>
+    <script type="text/javascript" src="./libs/three-vrm.js"></script>
+
+
+    <!-- INCLUDE DEMO SCRIPT -->
+    <script type="text/javascript" src="./demo.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
 
     <!-- INCLUDE FORK ME ON GITHUB BANNER -->
     <!-- <script type="text/javascript" src="../../appearance/widget.js"></script> -->
@@ -25,8 +32,10 @@
     <link rel="stylesheet" href="./style/style.css" type="text/css" />
 </head>
 
-<body style='color: white'>
+<body onload="main()" style='color: white'>
     <canvas width="600" height="600" id='jeeFaceFilterCanvas'></canvas>
+
+
 </body>
 
 </html>

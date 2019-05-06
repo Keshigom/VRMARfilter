@@ -1,14 +1,4 @@
-import './libs/jeeliz/jeelizFaceFilterES6.js'
-
-// SETTINGS of this demo :
-const SETTINGS = {
-    rotationOffsetX: 0, // negative -> look upper. in radians
-    cameraFOV: 40,      // in degrees, 3D camera FOV
-    pivotOffsetYZ: [0.2, 0.2], // XYZ of the distance between the center of the cube and the pivot
-    detectionThreshold: 0.75, // sensibility, between 0 and 1. Less -> more sensitive
-    detectionHysteresis: 0.05,
-    scale: 1 // scale of the 3D cube
-};
+"use strict";
 
 let THREECAMERA;
 
@@ -26,14 +16,14 @@ function init_threeScene(spec) {
     const threeStuffs = THREE.JeelizHelper.init(spec, detect_callback);
 
     // CREATE A CUBE
-    const cubeGeometry = new THREE.BoxGeometry(1, 1.5, 1);
-    const cubeMaterial = new THREE.MeshNormalMaterial();
+    const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+    const cubeMaterial = new THREE.MeshNormalMaterial({ wireframe: true });
     const threeCube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     threeCube.frustumCulled = false;
     threeStuffs.faceObject.add(threeCube);
 
     //CREATE THE CAMERA
-    var aspecRatio = spec.canvasElement.width / spec.canvasElement.height;
+    const aspecRatio = spec.canvasElement.width / spec.canvasElement.height;
     THREECAMERA = new THREE.PerspectiveCamera(20, aspecRatio, 0.1, 100);
 } // end init_threeScene()
 
@@ -49,6 +39,7 @@ function main() {
 
 function init_faceFilter(videoSettings) {
     JEEFACEFILTERAPI.init({
+        followZRot: true,
         canvasId: 'jeeFaceFilterCanvas',
         NNCpath: './libs/jeeliz/', // root of NNC.json file
         maxFacesDetected: 1,
@@ -69,4 +60,3 @@ function init_faceFilter(videoSettings) {
     }); //end JEEFACEFILTERAPI.init call
 } // end main()
 
-document.body.onload = main;

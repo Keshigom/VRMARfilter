@@ -13,11 +13,29 @@ body {
     position: absolute; 
     max-height: 100%;
     max-width: 100%;
-    left: 50%;
-    top: 50%;
+    /* left: 50%; */
+    /* top: 50%; */
     width: 100vmin;
-    transform: translate(-50%, -50%) rotateY(180deg);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    transform: rotateY(180deg);
 } 
+
+#threeCanvas{
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+    width: 100vmin;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
 
 @media (max-width: 787px) {
     #jeeFaceFilterCanvas {
