@@ -17,10 +17,10 @@ function init_threeScene(spec) {
 
     // CREATE A CUBE
     const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-    const cubeMaterial = new THREE.MeshNormalMaterial({ wireframe: true });
+    const cubeMaterial = new THREE.MeshNormalMaterial({ wireframe: false });
     const threeCube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     threeCube.frustumCulled = false;
-    threeStuffs.faceObject.add(threeCube);
+    //threeStuffs.faceObject.add(threeCube);
 
     //CREATE THE CAMERA
     const aspecRatio = spec.canvasElement.width / spec.canvasElement.height;
