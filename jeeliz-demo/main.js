@@ -24,8 +24,16 @@ const createVRM = () => {
 
 let ajast = () => {
     AVATAR.getScene().rotation.set(0, Math.PI, 0);
+    AVATAR.getScene().rotation.set(0, Math.PI, 0);
     AVATAR.setScale(10);
+    initialPose();
     ajast = () => { };
+}
+
+const initialPose = () => {
+    AVATAR.setBoneRotation("rightUpperArm", { z: -Math.PI / 4 });
+    AVATAR.setBoneRotation("leftUpperArm", { z: Math.PI / 4 });
+
 }
 
 const update = () => {
@@ -34,14 +42,31 @@ const update = () => {
     avatar = AVATAR.getScene();
     const targetPosition = THREE.JeelizHelper.CompositeObjects[0].position;
     const targetRotation = THREE.JeelizHelper.CompositeObjects[0].rotation;
-    targetRotation.x = -targetRotation.x;
-    targetRotation.z = -targetRotation.z;
+    const currentRotation = {
+        x: -targetRotation.x,
+        y: targetRotation.y,
+        z: -targetRotation.z
+    }
     const currentPosition = {
         x: targetPosition.x + Settings.positionOffset.x,
         y: targetPosition.y + Settings.positionOffset.y,
         z: targetPosition.z + Settings.positionOffset.z
     };
-    avatar.rotation.set(0, Math.PI, 0);
+
+    moveGaze(currentRotation);
     avatar.position.set(currentPosition.x, currentPosition.y, currentPosition.z);
-    AVATAR.setBoneRotation("head", targetRotation);
+    AVATAR.setBoneRotation("head", currentRotation);
+}
+
+const moveGaze = (headRotation) => {
+    const eyeRotation = {
+        x: -headRotation.x * 0.5,
+        y: -headRotation.y * 0.5,
+        z: 0,
+    }
+
+
+    AVATAR.setBoneRotation("rightEye", eyeRotation);
+    AVATAR.setBoneRotation("leftEye", eyeRotation);
+
 }
