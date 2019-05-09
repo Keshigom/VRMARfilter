@@ -20,7 +20,7 @@ const setTestObject = () => {
 
 let AVATAR_READY = false;
 const createVRM = () => {
-    AVATAR = new WebVRM("./assets/AliciaSolid.vrm", THREE.JeelizHelper.Scene, () => { AVATAR_READY = true });
+    AVATAR = new WebVRM("./assets/MonoPub.vrm", THREE.JeelizHelper.Scene, () => { AVATAR_READY = true });
 }
 
 let ajast = () => {
