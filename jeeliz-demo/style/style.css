@@ -44,3 +44,8 @@ body {
         transform: rotateY(180deg);
     }
 }
+
+#ui{
+    position:absolute;
+    z-index: 100;
+}

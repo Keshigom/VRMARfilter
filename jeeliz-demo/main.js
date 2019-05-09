@@ -8,19 +8,32 @@ const Settings = {
     }
 }
 
-const setTestObject = () => {
-    console.log(THREE.JeelizHelper.Scene);
-    const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-    const cubeMaterial = new THREE.MeshNormalMaterial({ wireframe: false });
-    const threeCube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    threeCube.position.set(0, 0, -10);
-    //THREE.JeelizHelper.Scene.add(threeCube);
-    createVRM();
+const init = () => {
+    document.querySelector("#uploadBtn").addEventListener("change", (e) => { handleFiles(e.target.files) });
+}
+window.addEventListener('load', function () {
+    init();
+});
+
+const handleFiles = (files) => {
+    const avatarURL = window.URL.createObjectURL(files[0]);
+    AVATAR_READY = false;
+    const light = new THREE.HemisphereLight(0xbbbbff, 0x444422);
+    light.position.set(0, 1, 0);
+    THREE.JeelizHelper.Scene.remove(AVATAR.getScene());
+    AVATAR = new WebVRM(avatarURL, THREE.JeelizHelper.Scene, avatarInit);
 }
 
 let AVATAR_READY = false;
+let AVATAR;
 const createVRM = () => {
-    AVATAR = new WebVRM("./assets/MonoPub.vrm", THREE.JeelizHelper.Scene, () => { AVATAR_READY = true });
+    AVATAR = new WebVRM("./assets/MonoPub.vrm", THREE.JeelizHelper.Scene, avatarInit);
+}
+
+const avatarInit = () => {
+    AVATAR_READY = true
+    console.log(AVATAR);
+    ajast()
 }
 
 let ajast = () => {
@@ -28,7 +41,7 @@ let ajast = () => {
     initialPose();
 
     //HACK: 読み込み直後はワールド座標が取れない？
-    setTimeout(function () {
+    setTimeout(() => {
         AVATAR.setBoneRotation("head", { x: 0, y: 0, z: 0 });
         const avatarScale = AVATAR._skeleton._boneMap.get("leftEye").bone.getWorldPosition().y - AVATAR._skeleton._boneMap.get("hips").bone.getWorldPosition().y;
         const scale = Settings.targetScale * 0.5473522283979353 / avatarScale;
@@ -38,7 +51,7 @@ let ajast = () => {
         AVATAR.setScale(scale);
         //Settings.positionOffset.y = -150 / scale;
     }, 100);
-    ajast = () => { };
+    //ajast = () => { };
 }
 
 const initialPose = () => {
@@ -49,7 +62,6 @@ const initialPose = () => {
 
 const update = () => {
     if (!AVATAR_READY) return;
-    ajast();
 
     avatar = AVATAR.getScene();
     const targetPosition = THREE.JeelizHelper.CompositeObjects[0].position;
@@ -84,3 +96,4 @@ const moveGaze = (headRotation) => {
     AVATAR.setBoneRotation("leftEye", eyeRotation);
 
 }
+

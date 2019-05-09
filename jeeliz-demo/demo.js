@@ -51,7 +51,7 @@ function init_faceFilter(videoSettings) {
 
             console.log('INFO : JEEFACEFILTERAPI IS READY');
             init_threeScene(spec);
-            setTestObject();
+            createVRM();
         }, //end callbackReady()
 
         //called at each render iteration (drawing loop) :

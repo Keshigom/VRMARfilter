@@ -203,6 +203,8 @@ THREE.JeelizHelper = (function () {
             });
 
             _threeScene = new THREE.Scene();
+            _threeRenderer.gammaOutput = true;
+
             THREE.JeelizHelper.Scene = _threeScene;
             create_threeCompositeObjects();
             create_videoScreen();
