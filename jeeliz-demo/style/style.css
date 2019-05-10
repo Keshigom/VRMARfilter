@@ -1,5 +1,5 @@
- a {color: #eee; text-decoration: none}
-a:hover {color: blue;}
+ a {color:  blue; text-decoration: none}
+a:hover {color:#00ffff;}
 body {
     overflow: auto; overflow-y: auto;
     background-color: white;
