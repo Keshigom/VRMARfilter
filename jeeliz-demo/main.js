@@ -10,6 +10,22 @@ const Settings = {
 
 const init = () => {
     document.querySelector("#uploadBtn").addEventListener("change", (e) => { handleFiles(e.target.files) });
+
+    document.querySelector("#downloadBtn").addEventListener("click", () => {
+        const canvas = document.querySelector("#jeeFaceFilterCanvas");
+        const downloadLink = document.querySelector("#downloadLink");
+        const name = AVATAR && AVATAR.getMetadata().title || "avatar_name";
+        const filename = name + "_" + Date.now();
+
+        if (canvas.msToBlob) {
+            const blob = canvas.msToBlob();
+            window.navigator.msSaveBlob(blob, filename);
+        } else {
+            downloadLink.href = canvas.toDataURL('image/png');
+            downloadLink.download = filename;
+            downloadLink.click();
+        }
+    });
 }
 window.addEventListener('load', function () {
     init();

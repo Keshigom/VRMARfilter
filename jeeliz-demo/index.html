@@ -36,7 +36,21 @@
 <body onload="main()" style='color: white'>
     <canvas width="600" height="600" id='jeeFaceFilterCanvas'></canvas>
     <div id="ui">
-        <input type="file" id="uploadBtn">
+        <div id="control">
+            <div>
+                <button id="downloadBtn"><img src="assets/camera.png" alt="take pic" width="200px" /></button>
+                <a id="downloadLink" href=""></a>
+            </div>
+            <div>
+                <label id=uploadLabel for="uploadBtn">
+                    <img src="assets/avatar.png" alt="take pic" width="200px" />
+                    <input type="file" id="uploadBtn">
+                </label>
+
+            </div>
+        </div>
+
+
     </div>
 
 </body>

@@ -48,4 +48,25 @@ body {
 #ui{
     position:absolute;
     z-index: 100;
+    width: 100%;
+    height: 100%;
+}
+
+#downloadBtn{
+    background: transparent;
+    padding: 0;
+    border: none;
+    width:200 ;
+    height:43;
+}
+
+#uploadBtn{
+    display: none;
+}
+
+#control{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: auto;
 }
