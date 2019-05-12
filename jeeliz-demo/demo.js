@@ -56,7 +56,8 @@ function init_faceFilter(videoSettings) {
 
         //called at each render iteration (drawing loop) :
         callbackTrack: function (detectState) {
-            update();
+            // console.log(detectState.expressions);
+            update(detectState);
             THREE.JeelizHelper.render(detectState, THREECAMERA);
         } //end callbackTrack()
     }); //end JEEFACEFILTERAPI.init call
