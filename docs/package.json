@@ -17,6 +17,6 @@
     "webpack-cli": "^3.3.1"
   },
   "dependencies": {
-    "three": "^0.104.0"
+    "three": "^0.137.0"
   }
 }
